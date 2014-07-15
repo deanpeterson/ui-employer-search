@@ -6,7 +6,7 @@
  * @description
  * # employerSearch
  */
-angular.module('employerSearchApp')
+angular.module('directives.employerSearch', [])
   .directive('employerSearch', function () {
     return {
       templateUrl: 'scripts/directives/templates/employersearchtemplate.html',

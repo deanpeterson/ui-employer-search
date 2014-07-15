@@ -7,7 +7,7 @@
  * # employerSearchFactory
  * Factory in the employerSearchApp.
  */
-angular.module('employerSearchApp')
+angular.module('services.employerSearchService')
   .factory('employerSearchFactory', function () {
     // Service logic
     // ...

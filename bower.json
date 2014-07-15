@@ -1,5 +1,5 @@
 {
-    "name": "ui-employer-search",
+    "name": "employer-search",
     "version": "0.0.1",
     "main": [
         "app/scripts/directives/templates/employersearchtemplate.html",

@@ -9,7 +9,9 @@
 angular.module('directives.employerSearch', [])
   .directive('employerSearch', function () {
     return {
-      templateUrl: 'scripts/directives/templates/employersearchtemplate.html',
+      templateUrl: function(tElement,tAttrs){
+          return tAttrs.templateUrl;
+      },
       restrict: 'EAC',
       link: function postLink(scope, element, attrs) {
         var select2Element = element.children().get(0);

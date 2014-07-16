@@ -6,8 +6,8 @@
  * @description
  * # employerSearch
  */
-angular.module('directives.employerSearch', [])
-    .directive('employerSearch', function ($compile, $http, $templateCache) {
+angular.module('directives.employerSearch', ['services.employerSearchService'])
+    .directive('employerSearch', function ($compile, $http, $templateCache, employerSearchFactory) {
         return {
             restrict: 'EAC',
             replace: true,
@@ -27,6 +27,9 @@ angular.module('directives.employerSearch', [])
                             $(select2Element).select2({
                                 minimumInputLength: attrs.minimumInputLength,
                                 maximumSelectionSize: attrs.maximumSelectionSize,
+                                initSelection:function(element, callback){
+                                    callback(scope.employers);
+                                },
                                 multiple: true,
                                 id: function (obj) {
                                     return obj.id;
@@ -53,14 +56,20 @@ angular.module('directives.employerSearch', [])
                                 }
                             });
 
+                            $(select2Element).select2('val',scope.employers);
+
                             //What should happen on change
                             $(select2Element).on("change", function (e) {
                                 if (e.added) {
                                     scope.employers.push(e.added);
+                                    employerSearchFactory.save();
+                                    scope.$apply();
                                 }
                                 else if (e.removed) {
                                     var i = scope.employers.indexOf(e.removed);
                                     scope.employers.splice(i, 1);
+                                    employerSearchFactory.save();
+                                    scope.$apply();
                                 }
 
                             });
